@@ -32,13 +32,13 @@ class ImageDisplayView:
             if let zoomView: ZoomingView = Bundle.main.loadNibNamed("ImageDisplayView",
                                                                     owner: self,
                                                                     options: nil)?[1] as? ZoomingView
-            {
+            {//例外処理を考慮したいのでif let形式で取得
                 zoomView.imageView.image = UIImage(named: "image")
                 zoomView.frame = CGRect(x: (CGFloat)(count)*UIScreen.main.bounds.size.width,
                                         y: 0,
                                         width: UIScreen.main.bounds.size.width,
                                         height: UIScreen.main.bounds.size.height)
-                mainContentView.addSubview(zoomView)
+                mainContentView.addSubview(zoomView) //描画
             }
             count += 1
         }
