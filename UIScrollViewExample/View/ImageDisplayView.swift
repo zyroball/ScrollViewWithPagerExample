@@ -17,23 +17,22 @@ class ImageDisplayView:
     @IBOutlet var contentSizeWidth: NSLayoutConstraint!
     @IBOutlet var pagerLabel: UILabel!
     
-    
     public func updateView()
     {
         mainScrollView.delegate     = self
         mainScrollView.contentSize  = CGSize(width: UIScreen.main.bounds.size.width*10,
                                              height: UIScreen.main.bounds.size.height)
-        //スクロールサイズを指定
-        contentSizeWidth.constant   = mainScrollView.contentSize.width
+        contentSizeWidth.constant   = mainScrollView.contentSize.width //スクロールサイズを指定
         
-        var count = 0
+        var count = 0 //カウントする
+        //10枚を表示させる
+        //ロールケーキ10個分
         while count < 10
         {
             if let zoomView: ZoomingView = Bundle.main.loadNibNamed("ImageDisplayView",
                                                                     owner: self,
                                                                     options: nil)?[1] as? ZoomingView
             {
-                print(zoomView)
                 zoomView.imageView.image = UIImage(named: "image")
                 zoomView.frame = CGRect(x: (CGFloat)(count)*UIScreen.main.bounds.size.width,
                                         y: 0,
@@ -47,12 +46,12 @@ class ImageDisplayView:
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-    {
+    {//ページャを指定
         updatePager(scrollView: scrollView)
     }
     
     private func updatePager(scrollView: UIScrollView)
-    {
+    {//ページャ実処理
         pagerLabel.text = "\(Int(scrollView.contentOffset.x/UIScreen.main.bounds.size.width)+1)" + "/" + "10"
     }
 }
