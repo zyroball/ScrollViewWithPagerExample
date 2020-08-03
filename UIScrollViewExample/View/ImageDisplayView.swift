@@ -33,6 +33,7 @@ class ImageDisplayView:
                                                                     owner: self,
                                                                     options: nil)?[1] as? ZoomingView
             {//例外処理を考慮したいのでif let形式で取得
+             //これだと記述ミスがあってもクラッシュしない。
                 zoomView.imageView.image = UIImage(named: "image")
                 zoomView.frame = CGRect(x: (CGFloat)(count)*UIScreen.main.bounds.size.width,
                                         y: 0,
